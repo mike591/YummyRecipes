@@ -1,15 +1,17 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Link} from 'react-router-dom'
 import App from './app'
+import HomeContainer from './home/home_container'
 
 const Root = ({ store }) => {
   return (
   <Provider store={ store }>
-    <Router>
-      <Route path="/" component={ App } >
-      </Route>
-    </Router>
+    <BrowserRouter>
+      <App>
+        <Route path="/" component={HomeContainer}/>
+      </App>
+    </BrowserRouter>
   </Provider>
 )};
 
