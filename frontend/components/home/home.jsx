@@ -11,6 +11,7 @@ class Home extends React.Component {
     this.initClient = this.initClient.bind(this);
     this.handleAuthClick = this.handleAuthClick.bind(this);
     this.handleSignoutClick = this.handleSignoutClick.bind(this);
+    this.makeApiCall = this.makeApiCall.bind(this);
   }
 
   componentWillMount() {
@@ -26,10 +27,20 @@ class Home extends React.Component {
     }).then(() => {
           // Listen for sign-in state changes.
           gapi.auth2.getAuthInstance().isSignedIn.listen(()=> {
-            console.log("google auth works");
+            this.makeApiCall()
           });
-
         });
+  }
+
+  makeApiCall() {
+    gapi.client.people.people.get({
+      resourceName: 'people/me'
+    }).then(function(resp) {
+
+      // TODO - Make user model, save into db, find user by email.
+
+      let name = resp.result.names[0].givenName;
+    });
   }
 
   handleAuthClick(event) {
