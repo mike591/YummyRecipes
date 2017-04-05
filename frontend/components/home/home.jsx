@@ -39,7 +39,9 @@ class Home extends React.Component {
 
       // TODO - Make user model, save into db, find user by email.
 
-      let name = resp.result.names[0].givenName;
+      let name = resp.result.names[0].displayName;
+      let email = resp.result.emailAddresses[0].value;
+      alert(`Name: ${name}\nEmail: ${email}`);
     });
   }
 
@@ -56,6 +58,7 @@ class Home extends React.Component {
       <div className="home-page">
         <button onClick={this.handleAuthClick}>Sign In</button>
         <button onClick={this.handleSignoutClick}>Sign Out</button>
+        <button onClick={this.makeApiCall}>Get Info!</button>
       </div>
     )
   }
