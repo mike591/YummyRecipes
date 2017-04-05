@@ -35,7 +35,7 @@ class Home extends React.Component {
   makeApiCall() {
     gapi.client.people.people.get({
       resourceName: 'people/me'
-    }).then(function(resp) {
+    }).then((resp) => {
 
       // TODO - Make user model, save into db, find user by email.
 
