@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405211115) do
+ActiveRecord::Schema.define(version: 20170405212342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "recipes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "image_url",   default: "http://res.cloudinary.com/dzwygk2c4/image/upload/v1491427660/user_xrw8po.png"
+    t.integer  "rating",      default: 5
+    t.string   "ingredients", default: [],                                                                                          array: true
+    t.string   "directions",  default: [],                                                                                          array: true
+    t.datetime "created_at",                                                                                           null: false
+    t.datetime "updated_at",                                                                                           null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
