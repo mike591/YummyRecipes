@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
   # TODO: add session token, then test.
 
   def create
-    @user = User.find_by(email: params[:email]) || User.create(user_params)
+    @user = User.find_by(email: params[:user][:email]) || User.create(user_params)
     render :show
   end
 
