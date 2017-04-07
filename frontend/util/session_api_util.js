@@ -7,11 +7,12 @@
 //   );
 // };
 
-export const login = () => {
+export const login = (user) => {
   return (
     $.ajax({
-      method: "",
-      url: ""
+      method: "POST",
+      url: "/api/users",
+      data: {user: user}
     })
   );
 };
