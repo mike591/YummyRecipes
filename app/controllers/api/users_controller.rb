@@ -4,6 +4,7 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:user][:email]) || User.create(user_params)
+    log_in(@user)
     render :show
   end
 
@@ -14,6 +15,10 @@ class Api::UsersController < ApplicationController
     else
       render @user.errors.full_messages, status: 400
     end
+  end
+
+  def log_out
+    log_out
   end
 
   private
