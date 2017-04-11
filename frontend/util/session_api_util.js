@@ -12,7 +12,16 @@ export const login = (user) => {
     $.ajax({
       method: "POST",
       url: "/api/users",
-      data: {user: user}
+      data: user
+    })
+  );
+};
+
+export const logout = () => {
+  return (
+    $.ajax({
+      method: "GET",
+      url: "/api/logout",
     })
   );
 };

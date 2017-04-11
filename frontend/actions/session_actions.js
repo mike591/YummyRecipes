@@ -9,10 +9,12 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 //   data : data
 // });
 
-const getCurrentUser = (currentUser) => ({
-  type: RECEIVE_CURRENT_USER,
-  currentUser : currentUser
-});
+const getCurrentUser = (currentUser) => {
+  return ({
+    type: RECEIVE_CURRENT_USER,
+    currentUser : currentUser
+  });
+};
 
 
 // Async
@@ -23,9 +25,16 @@ const getCurrentUser = (currentUser) => ({
 //     )
 // );
 
-export const login = () => dispatch => (
-  SessionApiUtil.login()
+export const login = (user) => dispatch => (
+  SessionApiUtil.login(user)
     .then(
       res => dispatch(getCurrentUser(res))
+    )
+);
+
+export const logout = () => dispatch => (
+  SessionApiUtil.logout()
+    .then(
+      res => dispatch(getCurrentUser(null))
     )
 );

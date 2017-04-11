@@ -27,7 +27,7 @@ class Home extends React.Component {
     }).then(() => {
           // Listen for sign-in state changes.
           gapi.auth2.getAuthInstance().isSignedIn.listen(()=> {
-            this.makeApiCall()
+
           });
         });
   }
@@ -38,19 +38,19 @@ class Home extends React.Component {
     }).then((resp) => {
 
       // TODO - Make user model, save into db, find user by email.
-
       let name = resp.result.names[0].displayName;
       let email = resp.result.emailAddresses[0].value;
-      alert(`Name: ${name}\nEmail: ${email}`);
+      console.log(`Name: ${name}\nEmail: ${email}`);
+      this.props.login({user: {email: email, name: name}})
     });
   }
 
   handleAuthClick(event) {
-    gapi.auth2.getAuthInstance().signIn();
+    gapi.auth2.getAuthInstance().signIn().then(res => {this.makeApiCall()})
   }
 
   handleSignoutClick(event) {
-    gapi.auth2.getAuthInstance().signOut();
+    gapi.auth2.getAuthInstance().signOut().then(res => {this.props.logout()})
   }
 
   render() {

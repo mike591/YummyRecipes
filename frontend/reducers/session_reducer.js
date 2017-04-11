@@ -1,16 +1,14 @@
-import {EXAMPLE_CONST_TYPE} from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
-const _defaultState = {
-  currentUser: null
-};
+const _defaultState = null;
 
 const SessionReducer = (state = _defaultState, action) => {
   Object.freeze(state);
   let newState;
   switch (action.type) {
-    case EXAMPLE_CONST_TYPE:
-      return newState;
+    case RECEIVE_CURRENT_USER:
+      return action.currentUser;
     default:
       return state;
   }

@@ -1,7 +1,5 @@
 class Api::UsersController < ApplicationController
 
-  # TODO: add session token, then test.
-
   def create
     @user = User.find_by(email: params[:user][:email]) || User.create(user_params)
     log_in(@user)
@@ -18,7 +16,7 @@ class Api::UsersController < ApplicationController
   end
 
   def log_out
-    log_out
+    sign_out
   end
 
   private

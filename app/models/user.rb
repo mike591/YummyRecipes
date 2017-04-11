@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  validates :email, :name, presence: true
   after_initialize :ensure_session_token
 
   def ensure_session_token
